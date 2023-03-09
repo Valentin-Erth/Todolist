@@ -1,0 +1,48 @@
+.App {
+  padding: 30px;
+  display: flex;
+}
+
+.App > div {
+  margin-right: 50px;
+}
+.todolist {
+  border: 2px solid #ffa869;
+  border-radius:  5px;
+  padding: 20px;
+  background-color: cadetblue;
+}
+
+.task {
+  font-weight: bold;
+}
+.task-done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.active-filter-btn {
+  background-color: #ffa369;
+  font-weight: bold;
+  color:  white;
+  border: 2px solid #ffa369;
+  border-radius: 3px;
+}
+.filter-btn {
+  background-color: cornflowerblue;
+  font-weight: bold;
+  color:  white;
+  border: 2px solid cornflowerblue;
+  border-radius: 3px;
+}
+.filter-btn-container {
+  display: flex;
+  justify-content: space-between
+}
+.input-error {
+  border: 2px solid #ffa369;
+  outline: none;
+}
+.list{
+  list-style-type: none;
+}
+
