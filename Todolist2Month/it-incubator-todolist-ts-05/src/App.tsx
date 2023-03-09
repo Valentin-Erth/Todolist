@@ -17,7 +17,7 @@ type TodoListType = {
 }
 
 type TasksStateType = {
-    [todoListId: string]: Array<TaskType>
+    [key: string]: Array<TaskType>
 }
 
 type TodoListsStateType = Array<TodoListType>
