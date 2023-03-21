@@ -1,4 +1,6 @@
 import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 type AddItemFormType = {
     maxLengthUserMessage: number
@@ -34,19 +36,33 @@ export const AddItemForm: FC<AddItemFormType> = (
         isUserMessageToLong && <div style={{color: "hotpink"}}>Task title is to long!</div>
     const inputErrorClasses = error || isUserMessageToLong ? "input-error" : ""
 // const onKeyDownAddItemHandler=isAddBtnDisabled
-
+const buttonSettings={maxWidth:"38px",maxHeight:"38px",minWidth:"38px",minHeight:"38px", }
     return (
         <div>
-            <input
-                value={title}
-                placeholder="Please, enter title"
-                onChange={changeLocalTitle}
-                onKeyDown={onKeyDownAddItem}
-                className={inputErrorClasses}
+            <TextField id="outlined-basic"
+                       label={error?"Title is requared": "Please type out..."}
+                       variant="outlined"
+                       error={error}
+                       placeholder="Please, enter title"
+                       value={title}
+                       onChange={changeLocalTitle}
+                       onKeyDown={onKeyDownAddItem}
+                       size={"small"}
             />
-            <button disabled={isAddBtnDisabled} onClick={addItem}>+</button>
+            {/*<input*/}
+            {/*    value={title}*/}
+            {/*    placeholder="Please, enter title"*/}
+            {/*    onChange={changeLocalTitle}*/}
+            {/*    onKeyDown={onKeyDownAddItem}*/}
+            {/*    className={inputErrorClasses}*/}
+            {/*/>*/}
+            {/*<button disabled={isAddBtnDisabled} onClick={addItem}>+</button>*/}
+            <Button style={buttonSettings}
+                    size="small" variant="contained"
+                    disabled={isAddBtnDisabled}
+                    onClick={addItem}>+</Button>
             {userMaxLengthMessage}
-            {userErrorMessage}
+            {/*{userErrorMessage}*/}
         </div>
     );
 };

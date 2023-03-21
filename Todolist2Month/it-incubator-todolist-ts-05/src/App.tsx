@@ -3,6 +3,10 @@ import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import ButtonAppBar from "./ButtonAppBar";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 
 // CRUD
@@ -75,7 +79,7 @@ function App(): JSX.Element {
         //
         setTasks({...tasks, [todoListId]: tasks[todoListId].map(t => t.id === taskId ? {...t, isDone: newIsDone} : t)})
     }
-    const changeTaskTitle=(taskId: string, newTitle: string, todoListId: string)=>{
+    const changeTaskTitle = (taskId: string, newTitle: string, todoListId: string) => {
         setTasks({...tasks, [todoListId]: tasks[todoListId].map(t => t.id === taskId ? {...t, title: newTitle} : t)})
     }
     const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
@@ -92,7 +96,7 @@ function App(): JSX.Element {
     const changeTodoListFilter = (filter: FilterValuesType, todoListId: string) => {
         setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: filter} : tl))
     }
-    const changeTodoListTitle=(title: string, todoListId: string)=>{
+    const changeTodoListTitle = (title: string, todoListId: string) => {
         setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, title: title} : tl))
     }
     const removeTodoList = (todoListId: string) => {
@@ -114,11 +118,12 @@ function App(): JSX.Element {
     }
 
 
-
     const todoListsComponents = todoLists.map(tl => {
         const filteredTasks: Array<TaskType> = getFilteredTasks(tasks[tl.id], tl
             .filter)
         return (
+            <Grid item>
+                <Paper style={{padding:"10px"}} elevation={3}>
             <TodoList
                 key={tl.id}
                 todoListId={tl.id}
@@ -135,13 +140,22 @@ function App(): JSX.Element {
                 changeTodoListFilter={changeTodoListFilter}
                 removeTodoList={removeTodoList}
             />
+                </Paper>
+            </Grid>
         )
     })
     //UI:
     return (
         <div className="App">
-            <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList}/>
-            {todoListsComponents}
+            <ButtonAppBar/>
+            <Container>
+                <Grid container style={{padding:"20px"}}>
+                    <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList}/>
+                </Grid>
+                <Grid container spacing={3}>
+                    {todoListsComponents}
+                </Grid>
+            </Container>
         </div>
     );
 }
