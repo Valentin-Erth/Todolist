@@ -17,8 +17,9 @@ export type ActionType =
     | ChangeTaskTitleActionType
     | AddTodolistAT
     | RemoveTodolistAT
-const initialState:TasksStateType={}
-export const tasksReducer = (state: TasksStateType=initialState, action: ActionType) => {
+const initialState: TasksStateType = {}
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionType) => {
+    // debugger
     switch (action.type) {
         case "REMOVE-TASK":
             return {...state, [action.todolistId]: state[action.todolistId].filter(t => t.id != action.taskId)}
@@ -26,6 +27,7 @@ export const tasksReducer = (state: TasksStateType=initialState, action: ActionT
             const newTask: TaskType = {id: v1(), title: action.title, isDone: false}
             return {...state, [action.todolistId]: [newTask, ...state[action.todolistId]]}
         case "CHANGE_TASK_STATUS":
+            // debugger
             return {
                 ...state, [action.todolistId]: state[action.todolistId]
                     .map(t => t.id === action.taskId ? {...t, isDone: action.newIsDone} : t)
@@ -43,7 +45,7 @@ export const tasksReducer = (state: TasksStateType=initialState, action: ActionT
         case "REMOVE-TODOLIST":
             // const copyState = {...state}
             // delete copyState[action.id]
-            const {[action.id]:[], ...rest}={...state}
+            const {[action.id]: [], ...rest} = {...state}
             return rest
         default:
             return state

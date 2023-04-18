@@ -6,12 +6,13 @@ type EditableSpanPropsType = {
     spanClasses?: string
     inputClasses?: string
 }
-export const EditableSpan: FC<EditableSpanPropsType> = (
+export const EditableSpan: FC<EditableSpanPropsType> = React.memo((
     {
         title,
         spanClasses,
         changeTitle,
     }) => {
+    console.log("EditableSpan is called")
     const [editMode, setEditMode] = useState<boolean>(false)
     const [localTitle, setlocalTitle] = useState<string>(title)
     const changeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,5 +35,5 @@ export const EditableSpan: FC<EditableSpanPropsType> = (
             : <span className={spanClasses}
                     onDoubleClick={onEditMode}>{title}</span>
     );
-};
+});
 

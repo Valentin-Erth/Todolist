@@ -1,5 +1,5 @@
-import React, {ChangeEvent, FC, RefObject, useRef, useState, KeyboardEvent} from 'react';
-import TasksList from "./TasksList";
+import React, {ChangeEvent, FC, RefObject, useRef, useState, KeyboardEvent, useCallback} from 'react';
+import Task from "./Task";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
@@ -30,14 +30,25 @@ export type TaskType = {
     isDone: boolean
 }
 
-const TodoList: FC<TodoListPropsType> = (props) => {
-
-    const addTask = (title: string) => {
+const TodoList: FC<TodoListPropsType> = React.memo((props) => {
+    console.log("TodoList is called")
+    const addTask = useCallback((title: string) => {
         props.addTask(title, props.todoListId)
-    }
-    const handlerCreator = (filter: FilterValuesType) => () => props.changeTodoListFilter(filter, props.todoListId)
+    },[props.addTask, props.todoListId])
+    const handlerCreator = useCallback((filter: FilterValuesType) => () => props.changeTodoListFilter(filter, props.todoListId),[props.changeTodoListFilter,props.todoListId])
     const removeTodoList = () => props.removeTodoList(props.todoListId)
-    const changeTodoListTitle = (title: string) => props.changeTodoListTitle(title, props.todoListId)
+    const changeTodoListTitle = useCallback((title: string) => props.changeTodoListTitle(title, props.todoListId),[props.changeTodoListTitle,props.todoListId])
+    const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+        switch (filter) {
+            case "active":
+                return tasks.filter(t => t.isDone === false)
+            case "completed":
+                return tasks.filter(t => t.isDone === true)
+            default:
+                return tasks
+        }
+    }
+    const filteredTasks: Array<TaskType> = getFilteredTasks(props.tasks, props.filter)
     return (
         <div className={"todolist"}>
             <h3><EditableSpan title={props.title} changeTitle={changeTodoListTitle}/>
@@ -46,13 +57,23 @@ const TodoList: FC<TodoListPropsType> = (props) => {
                 </IconButton>
             </h3>
             <AddItemForm maxLengthUserMessage={15} addNewItem={addTask}/>
-            <TasksList
-                todoListId={props.todoListId}
-                tasks={props.tasks}
-                removeTask={props.removeTask}
-                changeTaskStatus={props.changeTaskStatus}
-                changeTaskTitle={props.changeTaskTitle}
-            />
+            {filteredTasks.length?
+                filteredTasks.map((task)=>{
+                return(
+                    <Task
+                        todoListId={props.todoListId}
+                        tasks={filteredTasks}
+                        removeTask={props.removeTask}
+                        changeTaskStatus={props.changeTaskStatus}
+                        changeTaskTitle={props.changeTaskTitle}
+                        task={task}
+                        key={task.id}
+                    />
+                )
+            })
+                : <span>Your taskslist is empty</span>
+            }
+
             <div className="filter-btn-container">
                 <Button variant={props.filter === "all" ?"outlined":"contained"} color="success" onClick={handlerCreator('all')}>All</Button>
                 <Button variant={props.filter === "active" ?"outlined":"contained"} color="error" onClick={handlerCreator("active")}>Active</Button>
@@ -75,6 +96,6 @@ const TodoList: FC<TodoListPropsType> = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default TodoList;

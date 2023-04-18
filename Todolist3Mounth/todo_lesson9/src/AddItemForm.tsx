@@ -6,11 +6,12 @@ type AddItemFormType = {
     maxLengthUserMessage: number
     addNewItem: (title: string) => void
 }
-export const AddItemForm: FC<AddItemFormType> = (
+export const AddItemForm: FC<AddItemFormType> =React.memo ((
     {
         maxLengthUserMessage,
         addNewItem
     }) => {
+    console.log("AddItemForm is called")
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
 
@@ -65,5 +66,5 @@ const buttonSettings={maxWidth:"38px",maxHeight:"38px",minWidth:"38px",minHeight
             {/*{userErrorMessage}*/}
         </div>
     );
-};
+} );
 
