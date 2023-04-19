@@ -47,29 +47,29 @@ function AppWithRedux(): JSX.Element {
     },[dispatch])
     const addTask = useCallback((title: string, todoListId: string) => {
        dispatch(addTaskAC(title, todoListId))
-    },[])
+    },[dispatch])
     const changeTaskStatus = useCallback((taskId: string, newIsDone: boolean, todoListId: string) => {
         dispatch(changeTaskStatusAC(taskId, newIsDone, todoListId))
-    },[])
+    },[dispatch])
     const changeTaskTitle = useCallback((taskId: string, newTitle: string, todoListId: string) => {
         dispatch(changeTaskTitleAC(taskId, newTitle, todoListId))
-    },[])
+    },[dispatch])
 
 
     const changeTodoListFilter = useCallback((filter: FilterValuesType, todoListId: string) => {
         dispatch(ChangeTodolistFilerAC(todoListId, filter))
-    },[])
+    },[dispatch])
     const changeTodoListTitle = useCallback((title: string, todoListId: string) => {
         dispatch(ChangeTodolistTitleAC(todoListId, title))
-    },[])
+    },[dispatch])
     const removeTodoList = useCallback((todoListId: string) => {
         dispatch(RemoveTodolistAC(todoListId))
-    },[])
+    },[dispatch])
     const addTodoList = useCallback((title: string) => {
        // debugger
         dispatch(AddTodolistAC(title))
 
-    },[])
+    },[dispatch])
 
     const todoListsComponents = todoLists.map(tl => {
         // const filteredTasks: Array<TaskType> = getFilteredTasks(tasks[tl.id], tl

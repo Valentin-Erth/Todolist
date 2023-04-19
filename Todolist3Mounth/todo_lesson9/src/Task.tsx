@@ -7,7 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 
 type TasksListPropsType = {
     todoListId: string
-    tasks: TaskType[]
     removeTask: (taskId: string, todoListId: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void
     changeTaskTitle: (taskId: string, newTitle: string, todoListId: string) => void
