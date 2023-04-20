@@ -16,7 +16,7 @@ export const Task_2 = () => {
 
   const handleSetIsChecked = useCallback(() => setIsChecked(!isChecked),[isChecked]);
 
-  const handlePlusCountValueClick = useCallback(() => setFirstCount(prevFirstCount => prevFirstCount + 1),[]);
+  const handlePlusCountValueClick = useCallback(() => setFirstCount(prevFirstCount => prevFirstCount + 1),[firstCount]);
 
   return (
     <div style={{...CONTAINER_STYLES} as any}>
