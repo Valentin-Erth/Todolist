@@ -3,12 +3,14 @@ import React from "react";
 import AppWithRedux from "./AppWithRedux";
 import {Provider} from "react-redux";
 import {store} from "./State/Store";
+import {ReduxStoreProviderDecorator} from "./stories/decorators/ReduxStoreProviderDecorator";
 
 export default {
     title: "AppWithRedux component",
-    component: AppWithRedux
+    component: AppWithRedux,
+    decorators: [ReduxStoreProviderDecorator]
 }
 const callback=action("Button add was pressed inside the form")
 export const AppWithReduxBaseExample=(props:any)=>{
-    return <Provider store={store}><AppWithRedux/></Provider>
+    return <AppWithRedux/>
 }
