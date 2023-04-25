@@ -19,7 +19,6 @@ export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
                                                                  }: TasksListPropsType): JSX.Element => {
 
     const dispatch = useDispatch()
-
     const taskClasses = task.isDone ? "task task-done" : "task"
     const removeTaskHandler = () => dispatch(removeTaskAC(task.id, todoListId))
     const changeTaskStatusHandler =
