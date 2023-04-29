@@ -18,10 +18,10 @@ export const todolistAPI = {
             `todo-lists/${todolistId}`,{title})
     },
     getTodolists(){
-        return instance.get<GetTodolistType[]>("todo-lists")
+        return instance.get<TodolistType[]>("todo-lists")
     },
     createTodolist(title:string){
-        return instance.post<ResponseType<{item: GetTodolistType}>>("todo-lists", {title})
+        return instance.post<ResponseType<{item: TodolistType}>>("todo-lists", {title})
     },
     deleteTodolist(todolistId:string){
         return instance.delete<ResponseType>(`todo-lists/${todolistId}`)
@@ -40,13 +40,24 @@ return instance.put<ResponseType>(
         return instance.post<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks`, {title:  taskTitle})
     }
 }
-
+export enum TaskStatuses{//перечисление
+    New,
+    InProgress,
+    Completed,
+    Draft
+}
+export enum TaskPriorities{
+    Low,
+    Middle,
+    Hi,
+    Urgenty,
+    Later
+    }
 export type TaskType={
     description: string
     title: string
-    completed: boolean
-    status: number
-    priority: number
+    status: TaskStatuses
+    priority: TaskPriorities
     startDate: string
     deadline: string
     id: string
@@ -57,11 +68,10 @@ export type TaskType={
 export type UpdateTaskModelType={
     title: string
     description: string
-    completed: boolean
     status:number
     priority:number
     startDate: string
-    deadline: string|null
+    deadline: string
 }
 type GetTasksType={
     errror:string|null
@@ -73,9 +83,9 @@ type ResponseType<T={}>={
     messages: string[]
     data: T//сделали динамическую дата
 }
-type GetTodolistType={
-    "id": string
-    "title": string
-    "addedDate": Date
-    "order": number
+export type TodolistType ={
+    id: string
+    title: string
+    addedDate: ""
+    order: number
 }

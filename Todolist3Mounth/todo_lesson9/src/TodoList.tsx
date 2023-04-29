@@ -1,12 +1,12 @@
-import React, {ChangeEvent, FC, RefObject, useRef, useState, KeyboardEvent, useCallback, memo, useMemo} from 'react';
-import Task from "./Task";
-import {FilterValuesType} from "./App";
+import React, {FC, memo, useCallback, useMemo} from 'react';
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import {TaskWithRedux} from "./TaskWithRedux";
+import {TaskStatuses, TaskType} from "./api/todolists-api";
+import {FilterValuesType} from "./State/todolists-reducer";
 
 type TodoListPropsType = {
     todoListId: string
@@ -16,7 +16,7 @@ type TodoListPropsType = {
 
     removeTask: (taskId: string, todoListId: string) => void
     addTask: (title: string, todoListId: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void
+    changeTaskStatus: (taskId: string, status: TaskStatuses, todoListId: string) => void
     changeTaskTitle: (taskId: string, newTitle: string, todoListId: string) =>
         void
 
@@ -25,11 +25,7 @@ type TodoListPropsType = {
     removeTodoList: (todoListId: string) => void
 }
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+
 
 const TodoList: FC<TodoListPropsType> = React.memo((props) => {
     console.log("TodoList is called")
@@ -43,9 +39,9 @@ const TodoList: FC<TodoListPropsType> = React.memo((props) => {
          console.log("useMemo")
         switch (filter) {
             case "active":
-                return tasks.filter(t => t.isDone === false)
+                return tasks.filter(t => t.status === TaskStatuses.New)
             case "completed":
-                return tasks.filter(t => t.isDone === true)
+                return tasks.filter(t => t.status === TaskStatuses.Completed)
             default:
                 return tasks
         }
