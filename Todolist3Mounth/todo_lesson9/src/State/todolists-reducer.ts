@@ -1,8 +1,5 @@
-import {TasksStateType} from "../App";
 import {v1} from "uuid";
 import {TodolistType} from "../api/todolists-api";
-
-
 
 export type RemoveTodolistAT = {
     type: "REMOVE-TODOLIST"
