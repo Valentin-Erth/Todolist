@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../App.css';
 import TodoList from "../TodoList";
 import {v1} from "uuid";
@@ -11,13 +11,13 @@ import {
     ActionType, AddTodolistAC,
     ChangeTodolistFilerAC,
     ChangeTodolistTitleAC, FilterValuesType,
-    RemoveTodolistAC, TodoListDomainType,
+    RemoveTodolistAC, setTodolistAC, TodoListDomainType,
     todolistsReducer
 } from "../State/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "../State/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../State/Store";
-import {TaskType} from "../api/todolists-api";
+import {TaskType, todolistAPI} from "../api/todolists-api";
 import {useAppWithRedux} from "./hooks/useAppWithRedux";
 
 // CRUD
@@ -28,6 +28,7 @@ export type TasksStateType = {
 
 function AppWithRedux(): JSX.Element {
     console.log("App is called")
+    const dispatch=useDispatch()
     //BLL:
     const {todoLists,
         tasks,
@@ -41,10 +42,19 @@ function AppWithRedux(): JSX.Element {
         changeTaskStatus
     }=useAppWithRedux()
 
+    useEffect(()=>{
+        todolistAPI.getTodolists()
+            .then((res)=>{
+                dispatch(setTodolistAC(res.data))
+            })
+    },[])
     const todoListsComponents = todoLists.map(tl => {
         // const filteredTasks: Array<TaskType> = getFilteredTasks(tasks[tl.id], tl
         //     .filter)
+
         let allTodolistTasks=tasks[tl.id]
+        // debugger
+        console.log("tasks",tasks[tl.id])
         let tasksForTodolist=allTodolistTasks
         return (
             <Grid item key={tl.id}>

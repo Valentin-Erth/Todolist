@@ -46,6 +46,7 @@ const TodoList: FC<TodoListPropsType> = React.memo((props) => {
                 return tasks
         }
     }
+
     const filteredTasks: Array<TaskType> = getFilteredTasks(props.tasks, props.filter)
     return (
         <div className={"todolist"}>

@@ -1,6 +1,6 @@
 import {TasksStateType} from "../App/App";
 import {v1} from "uuid";
-import {AddTodolistAT, RemoveTodolistAT} from "./todolists-reducer";
+import {AddTodolistAT, RemoveTodolistAT, SetTodoListType} from "./todolists-reducer";
 import {TaskPriorities, TaskStatuses, TaskType} from "../api/todolists-api";
 
 
@@ -16,7 +16,7 @@ export type ActionType =
     | ChangeTaskStatusActionType
     | ChangeTaskTitleActionType
     | AddTodolistAT
-    | RemoveTodolistAT
+    | RemoveTodolistAT | SetTodoListType
 const initialState: TasksStateType = {}
 export const tasksReducer = (state: TasksStateType = initialState, action: ActionType) => {
     // debugger
@@ -24,8 +24,10 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
         case "REMOVE-TASK":
             return {...state, [action.todolistId]: state[action.todolistId].filter(t => t.id != action.taskId)}
         case "ADD_TASK":
-            const newTask: TaskType = {id: v1(), title: action.title, status: TaskStatuses.New,todoListId: action.todolistId,startDate:"",
-            deadline:"",addedDate:"",order:0,priority: TaskPriorities.Low, description:""}
+            const newTask: TaskType = {
+                id: v1(), title: action.title, status: TaskStatuses.New, todoListId: action.todolistId, startDate: "",
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+            }
             return {...state, [action.todolistId]: [newTask, ...state[action.todolistId]]}
         case "CHANGE_TASK_STATUS":
             // debugger
@@ -48,6 +50,13 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             // delete copyState[action.id]
             const {[action.id]: [], ...rest} = {...state}
             return rest
+        case "SET_TODOS":
+            // debugger
+            const copyState={...state}
+            action.todoLists.forEach((td)=>{
+                copyState[td.id]=[]
+            })
+            return copyState
         default:
             return state
     }
@@ -55,7 +64,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
 
 export const removeTaskAC = (taskId: string, todolistId: string) => ({type: "REMOVE-TASK", taskId, todolistId}) as const
 export const addTaskAC = (title: string, todolistId: string) => ({type: "ADD_TASK", title, todolistId}) as const
-export const changeTaskStatusAC = (taskId: string, status:TaskStatuses, todolistId: string) => ({
+export const changeTaskStatusAC = (taskId: string, status: TaskStatuses, todolistId: string) => ({
     type: "CHANGE_TASK_STATUS",
     taskId,
     status,
