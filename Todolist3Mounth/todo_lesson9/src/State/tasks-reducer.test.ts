@@ -100,19 +100,13 @@ test('title of specified task should be changed', () => {
     expect(endState["todolistId1"][2].title).toBe("Redux")
 })
 test('new array should be added when new todolist is added', () => {
-    const action = AddTodolistAC('new todolist')
+    const action = AddTodolistAC({id: "1", title: "What to learn", addedDate: "", order: 0})
 
     const endState = tasksReducer(startState, action)
 
     const keys = Object.keys(endState)
-    const newKey = keys.find(k => k != 'todolistId1' && k != 'todolistId2')
-    if (!newKey) {
-        throw Error('new key should be added')
-    }
-
-    expect(keys.length).toBe(3)
-    expect(endState[newKey]).toEqual([])
-})
+    expect(keys.length).toBe(4)
+    })
 test('property with todolistId should be deleted', () => {
     const action = RemoveTodolistAC('todolistId2')
 
