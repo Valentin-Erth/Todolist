@@ -4,8 +4,9 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import {useDispatch} from "react-redux";
-import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./State/tasks-reducer";
+import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, removeTasksTC} from "./State/tasks-reducer";
 import {TaskStatuses, TaskType} from "./api/todolists-api";
+import {useAppDispatch} from "./State/Store";
 
 type TasksListPropsType = {
     todoListId: string
@@ -18,9 +19,10 @@ export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
                                                                      todoListId
                                                                  }: TasksListPropsType): JSX.Element => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+    const dispatch=useAppDispatch()
     const taskClasses = task.status===TaskStatuses.Completed ? "task task-done" : "task"
-    const removeTaskHandler = () => dispatch(removeTaskAC(task.id, todoListId))
+    const removeTaskHandler = () => dispatch(removeTasksTC(task.id, todoListId))
     const changeTaskStatusHandler =
         (e: ChangeEvent<HTMLInputElement>) => {
             // debugger

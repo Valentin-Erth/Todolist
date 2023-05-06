@@ -80,7 +80,7 @@ export const setTodolistAC = (todoLists: TodolistType[]) => {
         todoLists
     } as const// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
 }
-export const getTodosTC =()=> (dispatch:Dispatch) => {
+export const getTodolistTC =()=> (dispatch:Dispatch) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     todolistAPI.getTodolists()
         .then((res) => {

@@ -96,17 +96,17 @@ export const getTasksTC =(todoId:string)=> (dispatch:Dispatch) => {
 dispatch(setTasksAC(todoId, res.data.items))
         })
 }
-export const deleteTasksTC =(todoId:string,taskId:string)=> (dispatch:Dispatch) => {
+export const removeTasksTC =(taskId:string,todoId:string)=> (dispatch:Dispatch) => {
     todolistAPI.deleteTask(todoId,taskId )
         .then((res) => {
-            debugger
+            // debugger
             dispatch(removeTaskAC(taskId,todoId))
         })
 }
 export const creatTasksTC =(todoId:string,title:string)=> (dispatch:Dispatch) => {
     todolistAPI.createTask(todoId,title )
         .then((res) => {
-            console.log(res.data.data.item)
+            // console.log(res.data.data.item)
             dispatch(addTaskAC(todoId,res.data.data.item))
         })
 }

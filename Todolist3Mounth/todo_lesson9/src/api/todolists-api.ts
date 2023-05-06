@@ -84,6 +84,7 @@ type GetTasksType = {
 type ResponseType<T = {}> = {
     resultCode: number
     messages: string[]
+    fieldsErrors:[]
     data: T//сделали динамическую дата
 }
 export type TodolistType = {

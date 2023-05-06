@@ -6,7 +6,7 @@ import ButtonAppBar from "../ButtonAppBar";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import {getTodosTC} from "../State/todolists-reducer";
+import {getTodolistTC} from "../State/todolists-reducer";
 import {useAppDispatch} from "../State/Store";
 import {TaskType} from "../api/todolists-api";
 import {useAppWithRedux} from "./hooks/useAppWithRedux";
@@ -36,7 +36,7 @@ function AppWithRedux(): JSX.Element {
     } = useAppWithRedux()
 
     useEffect(() => {
-        dispatch(getTodosTC())
+        dispatch(getTodolistTC())
     }, [])
     const todoListsComponents = todoLists.map(tl => {
         // const filteredTasks: Array<TaskType> = getFilteredTasks(tasks[tl.id], tl
