@@ -1,5 +1,7 @@
 import {v1} from "uuid";
-import {TodolistType} from "../api/todolists-api";
+import {todolistAPI, TodolistType} from "../api/todolists-api";
+import {Dispatch} from "redux";
+
 
 export type RemoveTodolistAT = {
     type: "REMOVE-TODOLIST"
@@ -47,7 +49,7 @@ export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialS
             return todolists.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
         case "CHANGE-TODOLIST-FILTER":
             return todolists.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
-        case "SET_TODOS":
+        case "SET_TODOLISTS":
             // debugger
             return action.todoLists.map(el=>({...el, filter: "all"}))
 
@@ -68,13 +70,21 @@ export const ChangeTodolistFilerAC = (id: string, filter: FilterValuesType): Cha
 })
 
 type _SetTodoListType = {
-    type: "SET_TODOS"
+    type: "SET_TODOLISTS"
     todoLists: TodolistType[]
 }
-
+//создали action для полученных todoLists с сервера
 export const setTodolistAC = (todoLists: TodolistType[]) => {
     return {
-        type: "SET_TODOS",
+        type: "SET_TODOLISTS",
         todoLists
-    } as const// защищает свой-ва объекта от изменений, мутаций. жесткая типизацияБ не сможем перезаписать. readonly-только для чтения
+    } as const// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
+}
+export const getTodosTC =()=> (dispatch:Dispatch) => {
+    // внутри санки можно делать побочные эффекты (запросы на сервер)
+    todolistAPI.getTodolists()
+        .then((res) => {
+           // и диспатчить экшены (action) или другие санки (thunk)
+            dispatch(setTodolistAC(res.data))
+        })
 }
