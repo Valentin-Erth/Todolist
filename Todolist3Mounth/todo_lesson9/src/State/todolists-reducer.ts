@@ -57,7 +57,7 @@ export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialS
             return todolists
     }
 }
-
+//Action Creators
 export const RemoveTodolistAC = (id: string): RemoveTodolistAT => ({type: "REMOVE-TODOLIST", id,})
 export const AddTodolistAC = (todolist: TodolistType): AddTodolistAT => ({type: "ADD-TODOLIST", todolist})
 export const ChangeTodolistTitleAC = (id: string, title: string): ChangeTodolistTitle => ({
@@ -80,6 +80,7 @@ export const setTodolistAC = (todoLists: TodolistType[]) => {
         todoLists
     } as const// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
 }
+//Thunk Creators
 export const getTodolistTC = () => (dispatch: Dispatch) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     todolistAPI.getTodolists()
