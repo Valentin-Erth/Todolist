@@ -1,14 +1,14 @@
 import React, {FC, memo, useCallback, useEffect, useMemo} from 'react';
-import {AddItemForm} from "./AdditemForm/AddItemForm";
-import {EditableSpan} from "./EditableSpan";
+import {AddItemForm} from "../../../components/AdditemForm/AddItemForm";
+import {EditableSpan} from "../../../components/EditableSpan/EditableSpan";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import {TaskWithRedux} from "./TaskWithRedux";
-import {TaskStatuses, TaskType} from "./api/todolists-api";
-import {FilterValuesType} from "./State/todolists-reducer";
-import {getTasksTC} from "./State/tasks-reducer";
-import {useAppDispatch} from "./State/Store";
+import {TaskWithRedux} from "./Task/TaskWithRedux";
+import {TaskStatuses, TaskType} from "../../../api/todolists-api";
+import {FilterValuesType} from "../todolists-reducer";
+import {getTasksTC} from "../tasks-reducer";
+import {useAppDispatch} from "../../../AppWithRedux/Store";
 
 type TodoListPropsType = {
     todoListId: string

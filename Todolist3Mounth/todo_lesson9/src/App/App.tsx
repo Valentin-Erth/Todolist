@@ -1,14 +1,14 @@
 import React from 'react';
-import '../App.css';
-import TodoList from "../TodoList";
+import '../AppWithRedux/App.css';
+import TodoList from "../features/TodolistsList/Todolist/TodoList";
 import {v1} from "uuid";
-import {AddItemForm} from "../AdditemForm/AddItemForm";
+import {AddItemForm} from "../components/AdditemForm/AddItemForm";
 import ButtonAppBar from "../ButtonAppBar";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import {TaskPriorities, TaskStatuses, TaskType} from "../api/todolists-api";
-import {FilterValuesType, TodoListDomainType} from "../State/todolists-reducer";
+import {FilterValuesType, TodoListDomainType} from "../features/TodolistsList/todolists-reducer";
 import {useTodolist} from "./hooks/useTodolist";
 import {useTasks} from "./hooks/useTasks";
 

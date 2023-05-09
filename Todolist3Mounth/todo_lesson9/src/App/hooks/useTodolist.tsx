@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {FilterValuesType, TodoListDomainType} from "../../State/todolists-reducer";
+import {FilterValuesType, TodoListDomainType} from "../../features/TodolistsList/todolists-reducer";
 import {todoListId_1, todoListId_2} from "../id-utils";
 import {v1} from "uuid";
 

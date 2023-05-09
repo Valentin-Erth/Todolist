@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, useCallback} from 'react';
-import {EditableSpan} from "./EditableSpan";
+import {EditableSpan} from "../../../../components/EditableSpan/EditableSpan";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
@@ -7,9 +7,9 @@ import {useDispatch} from "react-redux";
 import {
     changeTaskTitleAC,
     removeTasksTC, updateTasksTC
-} from "./State/tasks-reducer";
-import {TaskStatuses, TaskType} from "./api/todolists-api";
-import {useAppDispatch} from "./State/Store";
+} from "../../tasks-reducer";
+import {TaskStatuses, TaskType} from "../../../../api/todolists-api";
+import {useAppDispatch} from "../../../../AppWithRedux/Store";
 
 type TasksListPropsType = {
     todoListId: string

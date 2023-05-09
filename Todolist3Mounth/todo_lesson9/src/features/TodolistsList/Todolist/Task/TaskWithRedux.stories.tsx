@@ -1,8 +1,8 @@
 import {action} from '@storybook/addon-actions';
 import React from "react";
 import {TaskWithRedux} from "./TaskWithRedux";
-import {ReduxStoreProviderDecorator} from "./stories/decorators/ReduxStoreProviderDecorator";
-import {TaskPriorities, TaskStatuses} from "./api/todolists-api";
+import {ReduxStoreProviderDecorator} from "../../../../stories/decorators/ReduxStoreProviderDecorator";
+import {TaskPriorities, TaskStatuses} from "../../../../api/todolists-api";
 
 export default {
     title: "TaskWithRedux component",

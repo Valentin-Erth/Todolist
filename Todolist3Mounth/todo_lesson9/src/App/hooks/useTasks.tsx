@@ -3,7 +3,7 @@ import {todoListId_1, todoListId_2} from "../id-utils";
 import {v1} from "uuid";
 import {TaskPriorities, TaskStatuses, TaskType} from "../../api/todolists-api";
 import {TasksStateType} from "../App";
-import {FilterValuesType} from "../../State/todolists-reducer";
+import {FilterValuesType} from "../../features/TodolistsList/todolists-reducer";
 //Вынесли логику в кастомный хук, возвращаем из него объект с функциями для возможности использовать их  в App
 export function useTasks() {
     const [tasks, setTasks] = useState<TasksStateType>({

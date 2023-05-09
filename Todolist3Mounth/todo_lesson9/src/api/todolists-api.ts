@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {CreateTodolist, DeleteTodolist, GetTodolists} from "../stories/todolists-api.stories";
 
 const settings = {
     withCredentials: true,
@@ -12,6 +11,8 @@ const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true
 })
+
+// api
 export const todolistAPI = {
     getTodolists() {
         return instance.get<TodolistType[]>("todo-lists")
@@ -41,13 +42,13 @@ export const todolistAPI = {
     }
 }
 
+// types
 export enum TaskStatuses {//перечисление
     New,
     InProgress,
     Completed,
     Draft
 }
-
 export enum TaskPriorities {
     Low,
     Middle,
@@ -55,7 +56,6 @@ export enum TaskPriorities {
     Urgenty,
     Later
 }
-
 export type TaskType = {
     description: string
     title: string

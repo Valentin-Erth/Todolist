@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {Provider} from "react-redux";
-import {store} from "./State/Store";
+import {store} from "./AppWithRedux/Store";
 import AppWithRedux from "./AppWithRedux/AppWithRedux";
 import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "./dev";
