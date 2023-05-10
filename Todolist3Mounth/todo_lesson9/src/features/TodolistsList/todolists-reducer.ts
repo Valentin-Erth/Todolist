@@ -1,8 +1,9 @@
 import {v1} from "uuid";
 import {todolistAPI, TodolistType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
+import {AppActoinsType} from "../../AppWithRedux/Store";
 
-export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: ActionsType): Array<TodoListDomainType> => {
+export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: AppActoinsType): Array<TodoListDomainType> => {
     // debugger
     switch (action.type) {
         case "REMOVE-TODOLIST":
@@ -46,7 +47,7 @@ export const ChangeTodolistFilerAC = (id: string, filter: FilterValuesType) => (
 export const setTodolistAC = (todoLists: TodolistType[]) => ({type: "SET_TODOLISTS", todoLists} as const)// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
 
 //thunks
-export const getTodolistTC = () => (dispatch: Dispatch<ActionsType>) => {
+export const getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     todolistAPI.getTodolists()
         .then((res) => {
@@ -54,19 +55,19 @@ export const getTodolistTC = () => (dispatch: Dispatch<ActionsType>) => {
             dispatch(setTodolistAC(res.data))
         })
 }
-export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
+export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<AppActoinsType>) => {
     todolistAPI.deleteTodolist(todolistId)
         .then((res) => {
             dispatch(RemoveTodolistAC(todolistId))
         })
 }
-export const createTodolistTC = (title: string) => (dispatch: Dispatch<ActionsType>) => {
+export const createTodolistTC = (title: string) => (dispatch: Dispatch<AppActoinsType>) => {
     todolistAPI.createTodolist(title)
         .then((res) => {
             dispatch(AddTodolistAC(res.data.data.item))
         })
 }
-export const ChangeTodolistTitleTC = (id: string, title: string) => (dispatch: Dispatch<ActionsType>) => {
+export const ChangeTodolistTitleTC = (id: string, title: string) => (dispatch: Dispatch<AppActoinsType>) => {
     todolistAPI.updateTodolist(id, title)
         .then((res) => {
             dispatch(ChangeTodolistTitleAC(id, title))
@@ -79,7 +80,7 @@ export type  AddTodolistAT = ReturnType<typeof AddTodolistAC>
 export type ChangeTodolistTitleAT = ReturnType<typeof ChangeTodolistTitleAC>
 export type ChangeTodolistFilerAT = ReturnType<typeof ChangeTodolistFilerAC>
 export type SetTodoListAT = ReturnType<typeof setTodolistAC>
-export type ActionsType =
+export type TodolistActionsType =
     RemoveTodolistAT
     | AddTodolistAT
     | ChangeTodolistTitleAT
