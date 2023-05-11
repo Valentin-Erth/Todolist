@@ -49,7 +49,11 @@ export type ResponseType<D = {}> = {
     fieldsErrors: Array<string>
     data: D
 }
-
+export enum ResultCode{
+    OK,
+    ERROR,
+    ERROR_CAPTCHA
+}
 
 export enum TaskStatuses {
     New = 0,
