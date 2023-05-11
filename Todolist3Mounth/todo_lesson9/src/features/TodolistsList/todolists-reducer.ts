@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {todolistAPI, TodolistType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
-import {AppActoinsType} from "../../AppWithRedux/Store";
+import {AppActoinsType, AppThunk} from "../../AppWithRedux/Store";
 
 export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: AppActoinsType): Array<TodoListDomainType> => {
     // debugger
@@ -52,6 +52,7 @@ export const getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
     todolistAPI.getTodolists()
         .then((res) => {
             // и диспатчить экшены (action) или другие санки (thunk)
+            debugger
             dispatch(setTodolistAC(res.data))
         })
 }
@@ -61,10 +62,12 @@ export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<AppA
             dispatch(RemoveTodolistAC(todolistId))
         })
 }
-export const createTodolistTC = (title: string) => (dispatch: Dispatch<AppActoinsType>) => {
+export const createTodolistTC = (title: string):AppThunk => (dispatch) => {
     todolistAPI.createTodolist(title)
         .then((res) => {
-            dispatch(AddTodolistAC(res.data.data.item))
+            debugger
+            dispatch(getTodolistTC())
+            // dispatch(AddTodolistAC(res.data.data.item))
         })
 }
 export const ChangeTodolistTitleTC = (id: string, title: string) => (dispatch: Dispatch<AppActoinsType>) => {

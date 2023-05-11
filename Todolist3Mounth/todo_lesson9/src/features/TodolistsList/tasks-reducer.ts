@@ -2,7 +2,7 @@ import {TasksStateType} from "../../App/App";
 import {AddTodolistAT, RemoveTodolistAT, SetTodoListAT} from "./todolists-reducer";
 import {TaskPriorities, TaskStatuses, TaskType, todolistAPI, UpdateTaskModelType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
-import {AppActoinsType, AppRootStateType} from "../../AppWithRedux/Store";
+import {AppActoinsType, AppRootStateType, AppThunk} from "../../AppWithRedux/Store";
 
 // reducer
 export const tasksReducer = (state: TasksStateType = initialState, action: AppActoinsType) => {
@@ -69,7 +69,7 @@ export const setTasksAC = (todoId: string, tasks: TaskType[]) => ({
 } as const)
 
 // thunks
-export const getTasksTC = (todoId: string) => (dispatch: Dispatch<AppActoinsType>) => {
+export const getTasksTC = (todoId: string):AppThunk => (dispatch) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     todolistAPI.getTasks(todoId)
         .then((res) => {
