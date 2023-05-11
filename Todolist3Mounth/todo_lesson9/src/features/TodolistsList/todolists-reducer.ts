@@ -3,7 +3,7 @@ import {todolistAPI, TodolistType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
 import {AppActoinsType, AppThunk} from "../../AppWithRedux/Store";
 
-export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: AppActoinsType): Array<TodoListDomainType> => {
+export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: TodolistActionsType): Array<TodoListDomainType> => {
     // debugger
     switch (action.type) {
         case "REMOVE-TODOLIST":
@@ -47,25 +47,36 @@ export const ChangeTodolistFilerAC = (id: string, filter: FilterValuesType) => (
 export const setTodolistAC = (todoLists: TodolistType[]) => ({type: "SET_TODOLISTS", todoLists} as const)// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
 
 //thunks
-export const getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
+//через async/await
+export const getTodolistTC = (): AppThunk => async dispatch => {
+    try {
+        const res = await todolistAPI.getTodolists()
+        dispatch(setTodolistAC(res.data))
+    } catch (e:any) {
+        throw new Error(e)
+    }
+}
+//через then
+export const _getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     todolistAPI.getTodolists()
         .then((res) => {
             // и диспатчить экшены (action) или другие санки (thunk)
-            debugger
+            // debugger
             dispatch(setTodolistAC(res.data))
         })
 }
+
 export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<AppActoinsType>) => {
     todolistAPI.deleteTodolist(todolistId)
         .then((res) => {
             dispatch(RemoveTodolistAC(todolistId))
         })
 }
-export const createTodolistTC = (title: string):AppThunk => (dispatch) => {
+export const createTodolistTC = (title: string): AppThunk => (dispatch) => {
     todolistAPI.createTodolist(title)
         .then((res) => {
-            debugger
+            // debugger
             dispatch(getTodolistTC())
             // dispatch(AddTodolistAC(res.data.data.item))
         })

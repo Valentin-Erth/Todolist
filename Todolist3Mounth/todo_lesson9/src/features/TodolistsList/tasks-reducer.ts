@@ -5,7 +5,7 @@ import {Dispatch} from "redux";
 import {AppActoinsType, AppRootStateType, AppThunk} from "../../AppWithRedux/Store";
 
 // reducer
-export const tasksReducer = (state: TasksStateType = initialState, action: AppActoinsType) => {
+export const tasksReducer = (state: TasksStateType = initialState, action: TasksActionsType) => {
     // debugger
     switch (action.type) {
         case "REMOVE-TASK":
