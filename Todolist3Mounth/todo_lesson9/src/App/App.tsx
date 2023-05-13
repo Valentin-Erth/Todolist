@@ -41,6 +41,7 @@ function App(): JSX.Element {
             <Grid item>
                 <Paper style={{padding: "10px"}} elevation={3}>
                     <TodoList
+                        entityStatus={tl.entityStatus}
                         key={tl.id}
                         todoListId={tl.id}
                         title={tl.title}

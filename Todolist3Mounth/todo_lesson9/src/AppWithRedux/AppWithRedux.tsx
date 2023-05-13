@@ -12,15 +12,17 @@ import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
-
-function AppWithRedux(): JSX.Element {
+type PropsType={
+    demo?:boolean
+}
+function AppWithRedux({demo=false}:PropsType): JSX.Element {
     console.log("App is called")
     return (
         <div className="App">
             <ErrorSnackbar/>
             <ButtonAppBar/>
             <Container>
-                <TodolistsList/>
+                <TodolistsList demo={demo}/>
             </Container>
         </div>
     );

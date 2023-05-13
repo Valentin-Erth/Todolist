@@ -1,12 +1,12 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const settings = {
-    withCredentials: true,
-    headers: {
-        // Не забываем заменить API-KEY на собственный
-        'API-KEY': 'b09776ce-1fd6-481a-b2de-4833a22beba2',
-    },
-}
+// const settings = {
+//     withCredentials: true,
+//     headers: {
+//         // Не забываем заменить API-KEY на собственный
+//         'API-KEY': 'b09776ce-1fd6-481a-b2de-4833a22beba2',
+//     }
+// }
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true
@@ -55,6 +55,11 @@ export enum TaskPriorities {
     Hi,
     Urgenty,
     Later
+}
+export enum ResultCode{
+    OK,
+    ERROR,
+    ERROR_CAPTCHA
 }
 export type TaskType = {
     description: string

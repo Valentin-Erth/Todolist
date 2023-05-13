@@ -7,8 +7,8 @@ export function useTodolist(onTodolistRemoved: (todoListId:string)=>void,
 onTodolistAdd: (todoListId:string)=>void)
 {
     const [todoLists, setTodoLists] = useState<TodoListDomainType[]>([
-        {id: todoListId_1, title: "What to learn", filter: "all", addedDate: "", order: 0},
-        {id: todoListId_2, title: "What to buy", filter: "all", addedDate: "", order: 0},
+        {id: todoListId_1, title: "What to learn", filter: "all", addedDate: "", order: 0,entityStatus:"idle"},
+        {id: todoListId_2, title: "What to buy", filter: "all", addedDate: "", order: 0,entityStatus:"idle"},
     ])
     const changeTodoListFilter = (filter: FilterValuesType, todoListId: string) => {
         setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: filter} : tl))
@@ -27,7 +27,8 @@ onTodolistAdd: (todoListId:string)=>void)
             title: title,
             filter: "all",
             addedDate: "",
-            order: 0
+            order: 0,
+            entityStatus:"idle"
         }
         setTodoLists([...todoLists, newTodoList])
         onTodolistAdd(NewTodoListId)

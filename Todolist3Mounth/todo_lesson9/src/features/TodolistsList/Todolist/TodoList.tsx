@@ -9,12 +9,14 @@ import {TaskStatuses, TaskType} from "../../../api/todolists-api";
 import {FilterValuesType} from "../todolists-reducer";
 import {getTasksTC} from "../tasks-reducer";
 import {useAppDispatch} from "../../../AppWithRedux/Store";
+import {RequestStatusType} from "../../../AppWithRedux/app-reducer";
 
 type TodoListPropsType = {
     todoListId: string
     title: string
     filter: FilterValuesType
     tasks: TaskType[]
+    entityStatus:RequestStatusType
 
     removeTask: (taskId: string, todoListId: string) => void
     addTask: (title: string, todoListId: string) => void
@@ -25,16 +27,25 @@ type TodoListPropsType = {
     changeTodoListTitle: (title: string, todoListId: string) => void
     changeTodoListFilter: (filter: FilterValuesType, todoListId: string) => void
     removeTodoList: (todoListId: string) => void
+
+    demo?:boolean
 }
 
 
 
-const TodoList: FC<TodoListPropsType> = React.memo((props) => {
+const TodoList: FC<TodoListPropsType> = React.memo(({demo=false,...props}) => {
     console.log("TodoList is called")
+
     const dispatch=useAppDispatch()
     useEffect(()=>{
-        dispatch(getTasksTC(props.todoListId))
+        if (demo) {
+            return
+        } else {
+            dispatch(getTasksTC(props.todoListId))
+        }
+
     },[])
+
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.todoListId)
     }, [props.addTask, props.todoListId])
@@ -57,11 +68,11 @@ const TodoList: FC<TodoListPropsType> = React.memo((props) => {
     return (
         <div className={"todolist"}>
             <h3><EditableSpan title={props.title} changeTitle={changeTodoListTitle}/>
-                <IconButton aria-label="delete" onClick={removeTodoList}>
+                <IconButton aria-label="delete" onClick={removeTodoList} disabled={props.entityStatus==="loading"}>
                     <DeleteIcon/>
                 </IconButton>
             </h3>
-            <AddItemForm maxLengthUserMessage={15} addNewItem={addTask}/>
+            <AddItemForm maxLengthUserMessage={125} addNewItem={addTask}/>
             {filteredTasks.length ?
                 filteredTasks.map((task) => {
                     return (

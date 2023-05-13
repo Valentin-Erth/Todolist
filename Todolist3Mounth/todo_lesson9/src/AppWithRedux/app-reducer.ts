@@ -2,8 +2,8 @@
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 export const initialState = {
-    status: 'loading' as RequestStatusType,
-    error: "ERROR" as null|string
+    status: 'idle' as RequestStatusType,
+    error: null as null|string
 }
 export type InitialStateType = typeof initialState
 
@@ -20,6 +20,6 @@ export const appReducer = (state: InitialStateType = initialState, action: Loade
 export const setAppStatusAC=(status:RequestStatusType)=>({type:"APP/SET-STATUS",status}as const)
 export type setAppStatusAT=ReturnType<typeof setAppStatusAC>
 
-export const setAppErrorAC=(error:string|null)=>({type:'APP/SET-ERROR',error}as const)
-export type setAppErrorAT=ReturnType<typeof setAppErrorAC>
+export const setErrorAC=(error:string|null)=>({type:'APP/SET-ERROR',error}as const)
+export type setAppErrorAT=ReturnType<typeof setErrorAC>
 export type LoaderActionsType = setAppStatusAT|setAppErrorAT

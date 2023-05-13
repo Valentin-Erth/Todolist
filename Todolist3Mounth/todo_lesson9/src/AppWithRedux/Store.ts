@@ -2,7 +2,7 @@ import {TasksActionsType, tasksReducer} from '../features/TodolistsList/tasks-re
 import {TodolistActionsType, todolistsReducer} from '../features/TodolistsList/todolists-reducer';
 import {combineReducers, compose, legacy_createStore, AnyAction, applyMiddleware} from 'redux';
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
-import {useDispatch} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer, LoaderActionsType} from "./app-reducer";
 declare global {
     interface Window {
@@ -16,17 +16,21 @@ const rootReducer = combineReducers({
     todolists: todolistsReducer,
     app:appReducer
 })
-//создали свой кастомный хук useDispatch и используем его в APP по проекту
+//создали свой кастомный хук useDispatch и используем его в APP по проекту,
+// создаем тип диспатча который принимает как AC так и TC
 export  type AppDispatchType=ThunkDispatch<AppRootStateType,any,AnyAction>
 export const useAppDispatch=()=>useDispatch<AppDispatchType>()
+export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// непосредственно создаём store
 
+// непосредственно создаём store
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));//composeEnhancers()
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
+
 //все типы экшенов для всего app
 export type AppActoinsType=TodolistActionsType|TasksActionsType|LoaderActionsType
+
 //Универсальная типизация thunks
 export type AppThunk<ReturneType=void>=ThunkAction<ReturneType, AppRootStateType, unknown, AppActoinsType>
 

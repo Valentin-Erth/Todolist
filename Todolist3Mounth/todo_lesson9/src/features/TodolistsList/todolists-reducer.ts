@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {todolistAPI, TodolistType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
 import {AppActoinsType, AppThunk} from "../../AppWithRedux/Store";
-import {setAppStatusAC} from "../../AppWithRedux/app-reducer";
+import {RequestStatusType, setAppStatusAC, setErrorAC} from "../../AppWithRedux/app-reducer";
 
 export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialState, action: TodolistActionsType): Array<TodoListDomainType> => {
     // debugger
@@ -17,15 +17,16 @@ export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialS
             //     addedDate: "",
             //     order: 0
             // }
-            const newTodoList: TodoListDomainType = {...action.todolist, filter: "all"}
+            const newTodoList: TodoListDomainType = {...action.todolist, filter: "all",entityStatus:"idle"}
             return [...todolists, newTodoList]
         case "CHANGE-TODOLIST-TITLE":
             return todolists.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
         case "CHANGE-TODOLIST-FILTER":
             return todolists.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
         case "SET_TODOLISTS":
-            return action.todoLists.map(el => ({...el, filter: "all"}))
-
+            return action.todoLists.map(el => ({...el, filter: "all",entityStatus:"idle"}))
+        case "CHANGE-TODOLIST-ENTITY-STATUS":
+            return todolists.map(tl=>tl.id === action.id?{...tl,entityStatus:action.status}:tl)
         default:
             return todolists
     }
@@ -46,6 +47,7 @@ export const ChangeTodolistFilerAC = (id: string, filter: FilterValuesType) => (
 } as const)
 //action для полученных todoLists с сервера
 export const setTodolistAC = (todoLists: TodolistType[]) => ({type: "SET_TODOLISTS", todoLists} as const)// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
+export const changeTodolistEntityStatusAC=(id: string,status:RequestStatusType)=>({type:"CHANGE-TODOLIST-ENTITY-STATUS",id,status}as const)
 
 //thunks
 //через async/await
@@ -72,10 +74,15 @@ export const _getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
 
 export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<AppActoinsType>) => {
     dispatch(setAppStatusAC("loading"))
+    dispatch(changeTodolistEntityStatusAC(todolistId,"loading"))
     todolistAPI.deleteTodolist(todolistId)
         .then((res) => {
             dispatch(RemoveTodolistAC(todolistId))
             dispatch(setAppStatusAC('succeeded'))
+        })
+        .catch((error)=>{
+            dispatch(setErrorAC(error.message))
+            dispatch(setAppStatusAC('failed'))
         })
 }
 export const createTodolistTC = (title: string): AppThunk => (dispatch) => {
@@ -104,14 +111,17 @@ export type  AddTodolistAT = ReturnType<typeof AddTodolistAC>
 export type ChangeTodolistTitleAT = ReturnType<typeof ChangeTodolistTitleAC>
 export type ChangeTodolistFilerAT = ReturnType<typeof ChangeTodolistFilerAC>
 export type SetTodoListAT = ReturnType<typeof setTodolistAC>
+export type changeTodolistEntityStatusAT=ReturnType<typeof changeTodolistEntityStatusAC>
 export type TodolistActionsType =
     RemoveTodolistAT
     | AddTodolistAT
     | ChangeTodolistTitleAT
     | ChangeTodolistFilerAT
     | SetTodoListAT
+    |changeTodolistEntityStatusAT
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodoListDomainType = TodolistType & {
     filter: FilterValuesType
+    entityStatus: RequestStatusType
 }
 const initialState: Array<TodoListDomainType> = []

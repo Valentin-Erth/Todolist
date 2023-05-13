@@ -7,8 +7,10 @@ import {AddItemForm} from "../../components/AdditemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
 import TodoList from "./Todolist/TodoList";
 
-type TodolistsListPropsType = {}
-export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
+type TodolistsListPropsType = {
+    demo?:boolean
+}
+export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo=false}) => {
     const dispatch = useAppDispatch()
     const {
         todoLists,
@@ -24,7 +26,12 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
     } = useAppWithRedux()
 
     useEffect(() => {
-        dispatch(getTodolistTC())
+        if(demo){
+            return
+        }else{
+            dispatch(getTodolistTC())
+        }
+
     }, [])
     return (
         <>
@@ -38,7 +45,7 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
                         <Grid item key={tl.id}>
                             <Paper style={{padding: "10px"}} elevation={3}>
                                 <TodoList
-
+                                    entityStatus={tl.entityStatus}
                                     todoListId={tl.id}
                                     title={tl.title}
                                     tasks={tasksForTodolist}
@@ -52,6 +59,7 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
                                     changeTodoListTitle={changeTodoListTitle}
                                     changeTodoListFilter={changeTodoListFilter}
                                     removeTodoList={removeTodoList}
+                                    demo={demo}
                                 />
                             </Paper>
                         </Grid>

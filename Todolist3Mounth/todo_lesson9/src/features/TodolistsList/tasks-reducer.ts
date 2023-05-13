@@ -1,9 +1,16 @@
 import {TasksStateType} from "../../App/App";
 import {AddTodolistAT, RemoveTodolistAT, SetTodoListAT} from "./todolists-reducer";
-import {TaskPriorities, TaskStatuses, TaskType, todolistAPI, UpdateTaskModelType} from "../../api/todolists-api";
+import {
+    ResultCode,
+    TaskPriorities,
+    TaskStatuses,
+    TaskType,
+    todolistAPI,
+    UpdateTaskModelType
+} from "../../api/todolists-api";
 import {Dispatch} from "redux";
 import {AppActoinsType, AppRootStateType, AppThunk} from "../../AppWithRedux/Store";
-import {setAppStatusAC} from "../../AppWithRedux/app-reducer";
+import {setAppStatusAC, setErrorAC} from "../../AppWithRedux/app-reducer";
 
 // reducer
 export const tasksReducer = (state: TasksStateType = initialState, action: TasksActionsType) => {
@@ -16,9 +23,10 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Tasks
             //     id: v1(), title: action.title, status: TaskStatuses.New, todoListId: action.todolistId, startDate: "",
             //     deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
             // }
-            return {...state, [action.todolistId]: [action.task,...state[action.todolistId]]}
+            return {...state, [action.todolistId]: [action.task, ...state[action.todolistId]]}
         case "UPDATE_TASK":
-            return {...state, [action.todolistId]: state[action.todolistId]
+            return {
+                ...state, [action.todolistId]: state[action.todolistId]
                     .map(t => t.id === action.taskId ? {...t, ...action.model} : t)
             }
         case "CHANGE_TASK_TITLE":
@@ -70,7 +78,7 @@ export const setTasksAC = (todoId: string, tasks: TaskType[]) => ({
 } as const)
 
 // thunks
-export const getTasksTC = (todoId: string):AppThunk => (dispatch) => {
+export const getTasksTC = (todoId: string): AppThunk => (dispatch) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
     dispatch(setAppStatusAC("loading"))
     todolistAPI.getTasks(todoId)
@@ -93,9 +101,22 @@ export const creatTasksTC = (todoId: string, title: string) => (dispatch: Dispat
     dispatch(setAppStatusAC("loading"))
     todolistAPI.createTask(todoId, title)
         .then((res) => {
-            // console.log(res.data.data.item)
-            dispatch(addTaskAC(todoId, res.data.data.item))
-            dispatch(setAppStatusAC('succeeded'))
+            // console.log(res.data.data)
+            if (res.data.resultCode === ResultCode.OK) {
+                dispatch(addTaskAC(todoId, res.data.data.item))
+                dispatch(setAppStatusAC('succeeded'))
+            } else {
+                if (res.data.messages.length) {
+                    dispatch(setErrorAC(res.data.messages[0]))
+                } else {
+                    dispatch(setErrorAC("Some error occured"))
+                }
+                dispatch(setAppStatusAC('failed'))
+            }
+        })
+        .catch((error) => {
+            dispatch(setErrorAC(error.message))
+            dispatch(setAppStatusAC('failed'))
         })
 }
 export const updateTasksTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todoListId: string) =>
@@ -119,10 +140,24 @@ export const updateTasksTC = (taskId: string, domainModel: UpdateDomainTaskModel
         }
         todolistAPI.updateTask(todoListId, taskId, apiModel)
             .then((res) => {
-                const action = updateTaskAC(taskId, domainModel, todoListId)
-                dispatch(action)
-                dispatch(setAppStatusAC('succeeded'))
+                if (res.data.resultCode === ResultCode.OK) {
+                    const action = updateTaskAC(taskId, domainModel, todoListId)
+                    dispatch(action)
+                    dispatch(setAppStatusAC('succeeded'))
+                } else {
+                    if (res.data.messages.length) {
+                        dispatch(setErrorAC(res.data.messages[0]))
+                    } else {
+                        dispatch(setErrorAC("Some error occured"))
+                    }
+                    dispatch(setAppStatusAC('failed'))
+                }
             })
+            .catch((error) => {
+                dispatch(setErrorAC(error.message))
+                dispatch(setAppStatusAC('failed'))
+            })
+
     }
 
 // types
