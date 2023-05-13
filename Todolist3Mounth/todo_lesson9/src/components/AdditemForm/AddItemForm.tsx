@@ -6,18 +6,20 @@ import {useAdditemForm} from "./hooks/useAdditemForm";
 type AddItemFormType = {
     maxLengthUserMessage: number
     addNewItem: (title: string) => void
+    block?: boolean
 }
 export const AddItemForm: FC<AddItemFormType> = React.memo((
     {
         maxLengthUserMessage,
-        addNewItem
+        addNewItem,
+        block
     }) => {
     console.log("AddItemForm is called")
     const {title, error, changeLocalTitle, onKeyDownAddItem, addItem} = useAdditemForm(addNewItem)
 
     const userErrorMessage = error && <div style={{color: "hotpink"}}>Title is required!</div>
     const isUserMessageToLong: boolean = title.length > maxLengthUserMessage
-    const isAddBtnDisabled = !title.length || isUserMessageToLong || error
+    const isAddBtnDisabled = !title.length || isUserMessageToLong || error|| block
     const userMaxLengthMessage =
         isUserMessageToLong && <div style={{color: "hotpink"}}>Task title is to long!</div>
     const inputErrorClasses = error || isUserMessageToLong ? "input-error" : ""
@@ -46,7 +48,8 @@ export const AddItemForm: FC<AddItemFormType> = React.memo((
             <Button style={buttonSettings}
                     size="small" variant="contained"
                     disabled={isAddBtnDisabled}
-                    onClick={addItem}>+</Button>
+                    onClick={addItem}
+            >+</Button>
             {userMaxLengthMessage}
             {/*{userErrorMessage}*/}
         </div>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {RequestStatusType} from "../AppWithRedux/app-reducer";
 
 // const settings = {
 //     withCredentials: true,
@@ -72,6 +73,7 @@ export type TaskType = {
     todoListId: string
     order: number
     addedDate: string
+    entityStatus:RequestStatusType
 }
 export type UpdateTaskModelType = {
     title: string

@@ -15,9 +15,9 @@ export const TaskBaseExample=()=>{
     return <>
         <TaskWithRedux todoListId={"todolistId1"}
               task={{id:"1",title: "JS", status:TaskStatuses.Completed,todoListId: "todolistId1",startDate:"",
-                  deadline:"",addedDate:"",order:0,priority: TaskPriorities.Low, description:""}}/>
+                  deadline:"",addedDate:"",order:0,priority: TaskPriorities.Low, description:"",entityStatus:"idle"}} entityStatus={"loading"}/>
         <TaskWithRedux todoListId={"todolistId2"}
               task={{id:"2",title: "React",status:TaskStatuses.New,todoListId: "todolistId2",startDate:"",
-                  deadline:"",addedDate:"",order:0,priority: TaskPriorities.Low, description:""}}/>
+                  deadline:"",addedDate:"",order:0,priority: TaskPriorities.Low, description:"",entityStatus:"idle"}} entityStatus={"idle"}/>
             </>
 }

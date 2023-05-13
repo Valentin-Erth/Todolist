@@ -10,16 +10,18 @@ import {
 } from "../../tasks-reducer";
 import {TaskStatuses, TaskType} from "../../../../api/todolists-api";
 import {useAppDispatch} from "../../../../AppWithRedux/Store";
+import {RequestStatusType} from "../../../../AppWithRedux/app-reducer";
 
 type TasksListPropsType = {
     todoListId: string
     task: TaskType
-}
+    entityStatus:RequestStatusType
+    }
 
 
 export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
                                                                      task,
-                                                                     todoListId
+                                                                     todoListId,entityStatus
                                                                  }: TasksListPropsType): JSX.Element => {
 
     // const dispatch = useDispatch()
@@ -49,7 +51,7 @@ export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
             {/*    onChange={changeTaskStatusHandler}*/}
             {/*/>*/}
             <EditableSpan title={task.title} spanClasses={taskClasses} changeTitle={changeTaskTitleHandler}/>
-            <IconButton aria-label="delete" onClick={removeTaskHandler}>
+            <IconButton aria-label="delete" onClick={removeTaskHandler} disabled={entityStatus==="loading"}>
                 <DeleteIcon/>
             </IconButton>
         </div>

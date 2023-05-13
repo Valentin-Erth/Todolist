@@ -36,7 +36,7 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo=false}) =>
     return (
         <>
             <Grid container style={{padding: "20px"}}>
-                <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList}/>
+                <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList} block={false}/>
             </Grid>
             <Grid container spacing={3}>
                 {todoLists.map(tl => {

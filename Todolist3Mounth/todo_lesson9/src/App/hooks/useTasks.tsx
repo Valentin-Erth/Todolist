@@ -10,26 +10,26 @@ export function useTasks() {
         [todoListId_1]: [
             {
                 id: v1(), title: "HTML & CSS", status: TaskStatuses.Completed, todoListId: todoListId_1, startDate: "",
-                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
             },
             {
                 id: v1(), title: "ES6 & TS", status: TaskStatuses.Completed, todoListId: todoListId_1, startDate: "",
-                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
             },
             // {id: v1(), title: "REACT & REDUX", isDone: false},
         ],
         [todoListId_2]: [
             {
                 id: v1(), title: "MILK", status: TaskStatuses.Completed, todoListId: todoListId_2, startDate: "",
-                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
             },
             {
                 id: v1(), title: "BREAD", status: TaskStatuses.Completed, todoListId: todoListId_2, startDate: "",
-                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
             },
             {
                 id: v1(), title: "MEAT", status: TaskStatuses.New, todoListId: todoListId_2, startDate: "",
-                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+                deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
             },
         ]
     })
@@ -49,7 +49,7 @@ export function useTasks() {
             id: v1(),
             title: title,
             status: TaskStatuses.New, todoListId: todoListId, startDate: "",
-            deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: ""
+            deadline: "", addedDate: "", order: 0, priority: TaskPriorities.Low, description: "",entityStatus:"idle"
         }
         // const tasksForUpdate: Array<TaskType> = tasks[todoListId] // 3 tasks
         // const updatedTasks = [newTask, ...tasksForUpdate]  // 4 tasks

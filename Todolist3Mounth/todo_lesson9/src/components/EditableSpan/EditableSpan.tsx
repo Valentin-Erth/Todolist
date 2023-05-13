@@ -5,12 +5,13 @@ type EditableSpanPropsType = {
     changeTitle: (title: string) => void
     spanClasses?: string
     inputClasses?: string
+    block?: boolean
 }
 export const EditableSpan: FC<EditableSpanPropsType> = React.memo((
     {
         title,
         spanClasses,
-        changeTitle,
+        changeTitle, block
     }) => {
     console.log("EditableSpan is called")
     const [editMode, setEditMode] = useState<boolean>(false)
@@ -19,7 +20,9 @@ export const EditableSpan: FC<EditableSpanPropsType> = React.memo((
         setlocalTitle(e.currentTarget.value)
     }
     const onEditMode = () => {
-        setEditMode(true)
+        if (!block) {
+            setEditMode(true)
+        }
     }
     const offEditMode = () => {
         setEditMode(false)

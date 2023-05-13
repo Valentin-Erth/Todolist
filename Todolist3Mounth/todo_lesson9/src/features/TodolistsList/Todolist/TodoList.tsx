@@ -67,12 +67,12 @@ const TodoList: FC<TodoListPropsType> = React.memo(({demo=false,...props}) => {
     const filteredTasks: Array<TaskType> = getFilteredTasks(props.tasks, props.filter)
     return (
         <div className={"todolist"}>
-            <h3><EditableSpan title={props.title} changeTitle={changeTodoListTitle}/>
+            <h3><EditableSpan title={props.title} changeTitle={changeTodoListTitle} block={props.entityStatus==="loading"}/>
                 <IconButton aria-label="delete" onClick={removeTodoList} disabled={props.entityStatus==="loading"}>
                     <DeleteIcon/>
                 </IconButton>
             </h3>
-            <AddItemForm maxLengthUserMessage={125} addNewItem={addTask}/>
+            <AddItemForm maxLengthUserMessage={125} addNewItem={addTask} block={props.entityStatus==="loading"}/>
             {filteredTasks.length ?
                 filteredTasks.map((task) => {
                     return (
@@ -80,6 +80,7 @@ const TodoList: FC<TodoListPropsType> = React.memo(({demo=false,...props}) => {
                             todoListId={props.todoListId}
                             task={task}
                             key={task.id}
+                            entityStatus={task.entityStatus}
                         />
                     )
                 })

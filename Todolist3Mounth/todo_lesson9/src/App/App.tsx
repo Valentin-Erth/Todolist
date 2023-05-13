@@ -67,7 +67,7 @@ function App(): JSX.Element {
             <ButtonAppBar/>
             <Container>
                 <Grid container style={{padding: "20px"}}>
-                    <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList}/>
+                    <AddItemForm maxLengthUserMessage={15} addNewItem={addTodoList} block={false}/>
                 </Grid>
                 <Grid container spacing={3}>
                     {todoListsComponents}
