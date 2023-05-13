@@ -50,7 +50,7 @@ export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
             {/*    checked={task.isDone}*/}
             {/*    onChange={changeTaskStatusHandler}*/}
             {/*/>*/}
-            <EditableSpan title={task.title} spanClasses={taskClasses} changeTitle={changeTaskTitleHandler}/>
+            <EditableSpan title={task.title} spanClasses={taskClasses} changeTitle={changeTaskTitleHandler} block={entityStatus}/>
             <IconButton aria-label="delete" onClick={removeTaskHandler} disabled={entityStatus==="loading"}>
                 <DeleteIcon/>
             </IconButton>
