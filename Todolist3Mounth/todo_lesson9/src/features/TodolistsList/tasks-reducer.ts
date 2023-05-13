@@ -3,6 +3,7 @@ import {AddTodolistAT, RemoveTodolistAT, SetTodoListAT} from "./todolists-reduce
 import {TaskPriorities, TaskStatuses, TaskType, todolistAPI, UpdateTaskModelType} from "../../api/todolists-api";
 import {Dispatch} from "redux";
 import {AppActoinsType, AppRootStateType, AppThunk} from "../../AppWithRedux/Store";
+import {setAppStatusAC} from "../../AppWithRedux/app-reducer";
 
 // reducer
 export const tasksReducer = (state: TasksStateType = initialState, action: TasksActionsType) => {
@@ -71,28 +72,35 @@ export const setTasksAC = (todoId: string, tasks: TaskType[]) => ({
 // thunks
 export const getTasksTC = (todoId: string):AppThunk => (dispatch) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
+    dispatch(setAppStatusAC("loading"))
     todolistAPI.getTasks(todoId)
         .then((res) => {
             // и диспатчить экшены (action) или другие санки (thunk)
             const tasks = res.data.items
             dispatch(setTasksAC(todoId, tasks))
+            dispatch(setAppStatusAC('succeeded'))
         })
 }
 export const removeTasksTC = (taskId: string, todoId: string) => (dispatch: Dispatch<AppActoinsType>) => {
+    dispatch(setAppStatusAC("loading"))
     todolistAPI.deleteTask(todoId, taskId)
         .then((res) => {
             dispatch(removeTaskAC(taskId, todoId))
+            dispatch(setAppStatusAC('succeeded'))
         })
 }
 export const creatTasksTC = (todoId: string, title: string) => (dispatch: Dispatch<AppActoinsType>) => {
+    dispatch(setAppStatusAC("loading"))
     todolistAPI.createTask(todoId, title)
         .then((res) => {
             // console.log(res.data.data.item)
             dispatch(addTaskAC(todoId, res.data.data.item))
+            dispatch(setAppStatusAC('succeeded'))
         })
 }
 export const updateTasksTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todoListId: string) =>
     (dispatch: Dispatch<AppActoinsType>, getState: () => AppRootStateType) => {
+        dispatch(setAppStatusAC("loading"))
         const state = getState()
         const task = state.tasks[todoListId].find(t => t.id === taskId)
         if (!task) {
@@ -113,6 +121,7 @@ export const updateTasksTC = (taskId: string, domainModel: UpdateDomainTaskModel
             .then((res) => {
                 const action = updateTaskAC(taskId, domainModel, todoListId)
                 dispatch(action)
+                dispatch(setAppStatusAC('succeeded'))
             })
     }
 

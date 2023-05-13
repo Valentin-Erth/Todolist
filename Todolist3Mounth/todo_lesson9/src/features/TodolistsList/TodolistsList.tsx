@@ -35,28 +35,26 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
                 {todoLists.map(tl => {
                     let tasksForTodolist = tasks[tl.id]
                     return (
-                        <>
-                            <Grid item key={tl.id}>
-                                <Paper style={{padding: "10px"}} elevation={3}>
-                                    <TodoList
+                        <Grid item key={tl.id}>
+                            <Paper style={{padding: "10px"}} elevation={3}>
+                                <TodoList
 
-                                        todoListId={tl.id}
-                                        title={tl.title}
-                                        tasks={tasksForTodolist}
-                                        filter={tl.filter}
+                                    todoListId={tl.id}
+                                    title={tl.title}
+                                    tasks={tasksForTodolist}
+                                    filter={tl.filter}
 
-                                        addTask={addTask}
-                                        removeTask={removeTask}
-                                        changeTaskTitle={changeTaskTitle}
-                                        changeTaskStatus={changeTaskStatus}
+                                    addTask={addTask}
+                                    removeTask={removeTask}
+                                    changeTaskTitle={changeTaskTitle}
+                                    changeTaskStatus={changeTaskStatus}
 
-                                        changeTodoListTitle={changeTodoListTitle}
-                                        changeTodoListFilter={changeTodoListFilter}
-                                        removeTodoList={removeTodoList}
-                                    />
-                                </Paper>
-                            </Grid>
-                        </>
+                                    changeTodoListTitle={changeTodoListTitle}
+                                    changeTodoListFilter={changeTodoListFilter}
+                                    removeTodoList={removeTodoList}
+                                />
+                            </Paper>
+                        </Grid>
                     )
                 })
                 }
