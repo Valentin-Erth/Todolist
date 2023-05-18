@@ -37,6 +37,9 @@ const initialGlobalState:AppRootStateType = {
     app:{
         status: 'loading',
         error: "Error"
+    },
+    login:{
+        isLoggedIn: false
     }
 }
 export const storyBookStore = legacy_createStore(rootReducer, initialGlobalState,applyMiddleware(thunkMiddleware))

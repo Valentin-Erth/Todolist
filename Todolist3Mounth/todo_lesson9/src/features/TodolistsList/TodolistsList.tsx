@@ -1,17 +1,19 @@
 import React, {useEffect} from "react";
-import {useAppDispatch} from "../../AppWithRedux/Store";
+import {useAppDispatch, useAppSelector} from "../../AppWithRedux/Store";
 import {useAppWithRedux} from "../../AppWithRedux/hooks/useAppWithRedux";
 import {getTodolistTC} from "./todolists-reducer";
 import Grid from "@mui/material/Grid";
 import {AddItemForm} from "../../components/AdditemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
 import TodoList from "./Todolist/TodoList";
+import {Navigate} from "react-router-dom";
 
 type TodolistsListPropsType = {
-    demo?:boolean
+    demo?: boolean
 }
-export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo=false}) => {
+export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo = false}) => {
     const dispatch = useAppDispatch()
+    const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
     const {
         todoLists,
         tasks,
@@ -26,13 +28,16 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo=false}) =>
     } = useAppWithRedux()
 
     useEffect(() => {
-        if(demo){
+        if (demo||!isLoggedIn) {
             return
-        }else{
+        } else {
             dispatch(getTodolistTC())
         }
 
     }, [])
+    if(!isLoggedIn){
+        return <Navigate to={"/login"}/>
+    }
     return (
         <>
             <Grid container style={{padding: "20px"}}>

@@ -4,6 +4,7 @@ import {combineReducers, compose, legacy_createStore, AnyAction, applyMiddleware
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer, LoaderActionsType} from "./app-reducer";
+import {authReducer} from "../features/Login/auth-reducer";
 declare global {
     interface Window {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -14,7 +15,8 @@ declare global {
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
-    app:appReducer
+    app:appReducer,
+    login:authReducer
 })
 //создали свой кастомный хук useDispatch и используем его в APP по проекту,
 // создаем тип диспатча который принимает как AC так и TC
