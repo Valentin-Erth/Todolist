@@ -40,7 +40,7 @@ export const Login = () => {
             if (!values.password) {
                 errors.password = "Required"
             } else if (values.password.length < 3) {
-                errors.password = 'Invalid password'
+                errors.password = 'Password should be more 3 symbols'
             }
             return errors
         },
@@ -52,6 +52,7 @@ export const Login = () => {
 
         },
     })
+    // console.log(formik.errors)
     if(isLoggedIn){
         return <Navigate to={"/"}/>
     }

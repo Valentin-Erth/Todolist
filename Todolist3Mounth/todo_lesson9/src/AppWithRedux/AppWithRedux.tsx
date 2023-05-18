@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import ButtonAppBar from "../ButtonAppBar";
 import Container from '@mui/material/Container';
 import {TaskType} from "../api/todolists-api";
 import {TodolistsList} from "../features/TodolistsList/TodolistsList";
 import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {Login} from "../features/Login/Login";
+import {initializeAppTC} from "./app-reducer";
+import {useAppDispatch, useAppSelector} from "./Store";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // CRUD
 // R - filter, sort, search
@@ -18,6 +21,19 @@ type PropsType={
 }
 function AppWithRedux({demo=false}:PropsType): JSX.Element {
     console.log("App is called")
+    // const navigate=useNavigate()
+    const dispatch = useAppDispatch()
+    const isInitialized=useAppSelector<boolean>(state => state.app.isInitialized)
+    useEffect(()=>{
+        dispatch(initializeAppTC())
+    },[])
+if (!isInitialized) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+            <CircularProgress/>
+        </div>
+    }
+
     return (
         <BrowserRouter>
         <div className="App">

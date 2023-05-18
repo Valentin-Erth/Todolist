@@ -10,7 +10,7 @@ import {RequestStatusType} from "../AppWithRedux/app-reducer";
 // }
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
-    withCredentials: true
+    withCredentials: true// это поле говорит что с каждым запросом цепляй куку, бэк проверяет кто я в системе
 })
 
 // api
@@ -45,6 +45,9 @@ export const todolistAPI = {
 export const authAPI = {
     login(data:LoginParamsType) {
         return instance.post<ResponseType<{userId?:number}>>("auth/login",data)
+    },
+    me() {
+        return instance.get<ResponseType<LoginParamsType>>("/auth/me")
     }
 }
 
