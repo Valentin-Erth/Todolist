@@ -4,8 +4,9 @@ import ButtonAppBar from "../ButtonAppBar";
 import Container from '@mui/material/Container';
 import {TaskType} from "../api/todolists-api";
 import {TodolistsList} from "../features/TodolistsList/TodolistsList";
-import LinearProgress from "@mui/material/LinearProgress";
 import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Login} from "../features/Login/Login";
 
 // CRUD
 // R - filter, sort, search
@@ -18,13 +19,22 @@ type PropsType={
 function AppWithRedux({demo=false}:PropsType): JSX.Element {
     console.log("App is called")
     return (
+        <BrowserRouter>
         <div className="App">
             <ErrorSnackbar/>
             <ButtonAppBar/>
             <Container>
-                <TodolistsList demo={demo}/>
+                <Routes>
+                    <Route path={"/"} element={<TodolistsList demo={demo}/>}/>
+                    <Route path={"/login"} element={<Login/>}/>
+                    <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
+                    <Route path={"*"} element={<Navigate to={"/404"}/>}/>
+
+                </Routes>
+
             </Container>
         </div>
+            </BrowserRouter>
     );
 }
 

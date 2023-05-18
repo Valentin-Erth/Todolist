@@ -15,7 +15,7 @@ import {RequestStatusType} from "../../../../AppWithRedux/app-reducer";
 type TasksListPropsType = {
     todoListId: string
     task: TaskType
-    entityStatus:RequestStatusType
+    entityStatus?:RequestStatusType
     }
 
 
@@ -50,7 +50,7 @@ export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
             {/*    checked={task.isDone}*/}
             {/*    onChange={changeTaskStatusHandler}*/}
             {/*/>*/}
-            <EditableSpan title={task.title} spanClasses={taskClasses} changeTitle={changeTaskTitleHandler} block={entityStatus}/>
+            <EditableSpan title={task.title} spanClasses={taskClasses} changeTitle={changeTaskTitleHandler} block={entityStatus==="loading"}/>
             <IconButton aria-label="delete" onClick={removeTaskHandler} disabled={entityStatus==="loading"}>
                 <DeleteIcon/>
             </IconButton>

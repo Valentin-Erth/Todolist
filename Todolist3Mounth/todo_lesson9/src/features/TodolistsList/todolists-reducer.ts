@@ -58,8 +58,8 @@ export const getTodolistTC = (): AppThunk => async (dispatch) => {
         const res = await todolistAPI.getTodolists()
         dispatch(setTodolistAC(res.data))
         dispatch(setAppStatusAC('succeeded'))
-    } catch (e:any) {
-        throw new Error(e)
+    } catch (error:any) {
+        handleServerNetworkError(dispatch, error)
     }
 }
 //через then
