@@ -42,8 +42,19 @@ export const todolistAPI = {
         return instance.post<ResponseType<{item: TaskType}>>(`todo-lists/${todolistId}/tasks`, {title: taskTitle})
     }
 }
+export const authAPI = {
+    login(data:LoginParamsType) {
+        return instance.post<ResponseType<{userId?:number}>>("auth/login",data)
+    }
+}
 
 // types
+export type LoginParamsType={
+    email:string
+    password:string
+    rememberMe:boolean
+    captcha?:string
+}
 export enum TaskStatuses {//перечисление
     New,
     InProgress,

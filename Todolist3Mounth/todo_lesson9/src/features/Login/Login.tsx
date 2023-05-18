@@ -8,6 +8,8 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from "formik";
+import {useAppDispatch} from "../../AppWithRedux/Store";
+import {loginTC} from "./auth-reducer";
 
 type FormikErrorType = {
     email?: string
@@ -16,6 +18,7 @@ type FormikErrorType = {
 }
 
 export const Login = () => {
+    const dispatch = useAppDispatch()
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -23,7 +26,7 @@ export const Login = () => {
             rememberMe: false
         },
         validate: (values) => {
-            console.log(values)
+            // console.log(values)
             const errors: FormikErrorType = {}
 
             if (!values.email) {
@@ -40,7 +43,10 @@ export const Login = () => {
         },
         onSubmit: values => {
             alert(JSON.stringify(values));
+            console.log(values)
+            dispatch(loginTC(values))
             formik.resetForm();
+
         },
     })
 

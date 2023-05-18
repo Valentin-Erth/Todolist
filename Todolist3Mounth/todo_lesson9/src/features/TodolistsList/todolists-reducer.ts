@@ -65,11 +65,13 @@ export const getTodolistTC = (): AppThunk => async (dispatch) => {
 //через then
 export const _getTodolistTC = () => (dispatch: Dispatch<AppActoinsType>) => {
     // внутри санки можно делать побочные эффекты (запросы на сервер)
+    dispatch(setAppStatusAC("loading"))
     todolistAPI.getTodolists()
         .then((res) => {
             // и диспатчить экшены (action) или другие санки (thunk)
             // debugger
             dispatch(setTodolistAC(res.data))
+            dispatch(setAppStatusAC('succeeded'))
         })
         .catch((error) => {
             handleServerNetworkError(dispatch, error)
