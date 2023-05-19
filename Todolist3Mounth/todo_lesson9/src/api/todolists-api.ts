@@ -35,28 +35,31 @@ export const todolistAPI = {
         return instance.delete<ResponseType>(`todo-lists/${todolistId}//tasks/${taskId}`)
     },
     updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
-        return instance.put<ResponseType<{item: TaskType}>>(
+        return instance.put<ResponseType<{ item: TaskType }>>(
             `todo-lists/${todolistId}/tasks/${taskId}`, model)
     },
     createTask(todolistId: string, taskTitle: string) {
-        return instance.post<ResponseType<{item: TaskType}>>(`todo-lists/${todolistId}/tasks`, {title: taskTitle})
+        return instance.post<ResponseType<{ item: TaskType }>>(`todo-lists/${todolistId}/tasks`, {title: taskTitle})
     }
 }
 export const authAPI = {
-    login(data:LoginParamsType) {
-        return instance.post<ResponseType<{userId?:number}>>("auth/login",data)
+    login(data: LoginParamsType) {
+        return instance.post<ResponseType<{ userId?: number }>>("auth/login", data)
     },
     me() {
-        return instance.get<ResponseType<LoginParamsType>>("/auth/me")
+        return instance.get<ResponseType<UserType>>("/auth/me")
+    },
+    logout() {
+        return instance.delete<ResponseType>("/auth/login")
     }
 }
 
 // types
-export type LoginParamsType={
-    email:string
-    password:string
-    rememberMe:boolean
-    captcha?:string
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
 }
 export enum TaskStatuses {//перечисление
     New,
@@ -71,11 +74,12 @@ export enum TaskPriorities {
     Urgenty,
     Later
 }
-export enum ResultCode{
+export enum ResultCode {
     OK,
     ERROR,
     ERROR_CAPTCHA
 }
+
 export type TaskType = {
     description: string
     title: string
@@ -87,7 +91,7 @@ export type TaskType = {
     todoListId: string
     order: number
     addedDate: string
-    entityStatus:RequestStatusType
+    entityStatus: RequestStatusType
 }
 export type UpdateTaskModelType = {
     title: string
@@ -105,7 +109,7 @@ type GetTasksType = {
 export type ResponseType<T = {}> = {
     resultCode: number
     messages: string[]
-    fieldsErrors:[]
+    fieldsErrors: []
     data: T//сделали динамическую дата
 }
 export type TodolistType = {
@@ -113,4 +117,9 @@ export type TodolistType = {
     title: string
     addedDate: string
     order: number
+}
+type UserType = {
+    id: number
+    email: string
+    login: string
 }

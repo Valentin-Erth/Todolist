@@ -30,7 +30,7 @@ function AppWithRedux({demo=false}:PropsType): JSX.Element {
 if (!isInitialized) {
         return <div
             style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
-            <CircularProgress/>
+            <CircularProgress size={100}/>
         </div>
     }
 

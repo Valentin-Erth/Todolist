@@ -36,6 +36,22 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsTyp
             handleServerNetworkError(dispatch, error)
         })
 }
+export const logoutTC = () => (dispatch: Dispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    authAPI.logout()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLoggedInAC(false))
+                dispatch(setAppStatusAC('succeeded'))
+            } else {
+                handleServerAppError(dispatch,res.data)
+            }
+        })
+        .catch((error) => {
+            handleServerNetworkError(dispatch,error)
+        })
+}
+
 
 // types
     type ActionsType = ReturnType<typeof setIsLoggedInAC> | setAppStatusAT | setAppErrorAT
