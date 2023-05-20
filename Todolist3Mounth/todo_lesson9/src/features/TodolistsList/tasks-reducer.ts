@@ -1,5 +1,5 @@
 import {TasksStateType} from "../../App/App";
-import {AddTodolistAT, RemoveTodolistAT, SetTodoListAT} from "./todolists-reducer";
+import {AddTodolistAT, clearTodosDataAT, RemoveTodolistAT, SetTodoListAT} from "./todolists-reducer";
 import {
     ResultCode,
     TaskPriorities,
@@ -55,6 +55,8 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Tasks
             return {...state, [action.todoId]: action.tasks}
         case "CHANGE-TASK-ENTITY-STATUS":
             return {...state, [action.todoId]: state[action.todoId].map(t=>t.id===action.taskId?{...t,entityStatus:action.status}:t)}
+        case "CLEAR-DATA":
+            return {}
         default:
             return state
     }
@@ -189,5 +191,6 @@ export type TasksActionsType =
     | RemoveTodolistAT
     | SetTodoListAT
     | SetTasksType
-    |changeTaskEntityStatusAT
+    | changeTaskEntityStatusAT
+    | clearTodosDataAT
 const initialState: TasksStateType = {}

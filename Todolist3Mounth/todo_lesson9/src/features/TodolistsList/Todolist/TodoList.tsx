@@ -53,7 +53,7 @@ const TodoList: FC<TodoListPropsType> = React.memo(({demo=false,...props}) => {
     const removeTodoList = useCallback(() => props.removeTodoList(props.todoListId),[props.removeTodoList,props.todoListId])
     const changeTodoListTitle = useCallback((title: string) => props.changeTodoListTitle(title, props.todoListId), [props.changeTodoListTitle, props.todoListId])
      const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
-         console.log("useMemo")
+         // console.log("useMemo")
         switch (filter) {
             case "active":
                 return tasks.filter(t => t.status === TaskStatuses.New)

@@ -28,6 +28,8 @@ export const todolistsReducer = (todolists: Array<TodoListDomainType> = initialS
             return action.todoLists.map(el => ({...el, filter: "all",entityStatus:"idle"}))
         case "CHANGE-TODOLIST-ENTITY-STATUS":
             return todolists.map(tl=>tl.id === action.id?{...tl,entityStatus:action.status}:tl)
+        case "CLEAR-DATA":
+            return []
         default:
             return todolists
     }
@@ -49,7 +51,7 @@ export const ChangeTodolistFilerAC = (id: string, filter: FilterValuesType) => (
 //action для полученных todoLists с сервера
 export const setTodolistAC = (todoLists: TodolistType[]) => ({type: "SET_TODOLISTS", todoLists} as const)// защищает свой-ва объекта от изменений, мутаций. жесткая типизация не сможем перезаписать. readonly-только для чтения
 export const changeTodolistEntityStatusAC=(id: string,status:RequestStatusType)=>({type:"CHANGE-TODOLIST-ENTITY-STATUS",id,status}as const)
-
+export const clearTodosDataAC=()=>({type:"CLEAR-DATA"} as const)
 //thunks
 //через async/await
 export const getTodolistTC = (): AppThunk => async (dispatch) => {
@@ -134,6 +136,7 @@ export type ChangeTodolistTitleAT = ReturnType<typeof ChangeTodolistTitleAC>
 export type ChangeTodolistFilerAT = ReturnType<typeof ChangeTodolistFilerAC>
 export type SetTodoListAT = ReturnType<typeof setTodolistAC>
 export type changeTodolistEntityStatusAT=ReturnType<typeof changeTodolistEntityStatusAC>
+export type clearTodosDataAT=ReturnType<typeof clearTodosDataAC>
 export type TodolistActionsType =
     RemoveTodolistAT
     | AddTodolistAT
@@ -141,6 +144,7 @@ export type TodolistActionsType =
     | ChangeTodolistFilerAT
     | SetTodoListAT
     |changeTodolistEntityStatusAT
+    |clearTodosDataAT
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodoListDomainType = TodolistType & {
     filter: FilterValuesType
