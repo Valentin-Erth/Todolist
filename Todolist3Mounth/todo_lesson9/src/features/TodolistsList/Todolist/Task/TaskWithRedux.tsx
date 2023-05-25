@@ -18,7 +18,6 @@ type TasksListPropsType = {
     entityStatus?:RequestStatusType
     }
 
-
 export const TaskWithRedux: FC<TasksListPropsType> = React.memo(({
                                                                      task,
                                                                      todoListId,entityStatus
