@@ -1,5 +1,5 @@
 import { AnyIfEmpty, FixTypeLater } from 'react-redux/es/types';
-import {combineReducers, compose, createStore, Store} from 'redux';
+import {combineReducers, compose, legacy_createStore, Store} from 'redux';
 import {usersCountReducer, usersReducer} from 'store/reducers';
 
 
@@ -15,7 +15,7 @@ const rootReducers = combineReducers({
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store: Store<RootStoreType> = createStore(rootReducers, composeEnhancers());
+export const store: Store<RootStoreType> = legacy_createStore(rootReducers, composeEnhancers());
 
 export type RootStoreType = ReturnType<typeof rootReducers>
 

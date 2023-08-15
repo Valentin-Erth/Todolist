@@ -48,11 +48,11 @@ function App(): JSX.Element {
     })
     const removeTask = (taskId: string, todoListId: string) => {
         //1. Get next state
-        const tasksForUpdate = tasks[todoListId]
-        const updatedTasks = tasksForUpdate.filter(t => t.id !== taskId)
-        const copyTasks = {...tasks}
-        copyTasks[todoListId] = updatedTasks
-        setTasks(copyTasks)
+        // const tasksForUpdate = tasks[todoListId]
+        // const updatedTasks = tasksForUpdate.filter(t => t.id !== taskId)
+        // const copyTasks = {...tasks}
+        // copyTasks[todoListId] = updatedTasks
+        // setTasks(copyTasks)
         //2. Set next state
         setTasks({...tasks, [todoListId]: tasks[todoListId].filter(t => t.id !== taskId)})
 
@@ -63,20 +63,20 @@ function App(): JSX.Element {
             title: title,
             isDone: false
         }
-        const tasksForUpdate: Array<TaskType> = tasks[todoListId] // 3 tasks
-        const updatedTasks = [newTask, ...tasksForUpdate]  // 4 tasks
-        const copyTasks = {...tasks}
-        copyTasks[todoListId] = updatedTasks
-        setTasks(copyTasks)
+        // const tasksForUpdate: Array<TaskType> = tasks[todoListId] // 3 tasks
+        // const updatedTasks = [newTask, ...tasksForUpdate]  // 4 tasks
+        // const copyTasks = {...tasks}
+        // copyTasks[todoListId] = updatedTasks
+        // setTasks(copyTasks)
         //
         setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
     }
     const changeTaskStatus = (taskId: string, newIsDone: boolean, todoListId: string) => {
-        const tasksForUpdate: Array<TaskType> = tasks[todoListId]
-        const updatedTasks = tasksForUpdate.map(t => t.id === taskId ? {...t, isDone: newIsDone} : t)
-        const copyTasks = {...tasks}
-        copyTasks[todoListId] = updatedTasks
-        setTasks(copyTasks)
+        // const tasksForUpdate: Array<TaskType> = tasks[todoListId]
+        // const updatedTasks = tasksForUpdate.map(t => t.id === taskId ? {...t, isDone: newIsDone} : t)
+        // const copyTasks = {...tasks}
+        // copyTasks[todoListId] = updatedTasks
+        // setTasks(copyTasks)
         //
         setTasks({...tasks, [todoListId]: tasks[todoListId].map(t => t.id === taskId ? {...t, isDone: newIsDone} : t)})
     }

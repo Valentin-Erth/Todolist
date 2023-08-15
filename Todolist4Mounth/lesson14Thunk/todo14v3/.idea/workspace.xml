@@ -101,7 +101,80 @@
       <change beforePath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_1.2/src/store/selectors/selectUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_1.2/src/store/selectors/selectUsers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_1.2/src/store/selectors/selectUsersCount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_1.2/src/store/selectors/selectUsersCount.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_2.1/src/task_1/Task_1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Todolist3Mounth/Dop-wendsday/extra_classes_wednesday_2.1/src/task_1/Task_1.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Todolist3Mounth/todo_lesson9/src/AppWithRedux/AppWithRedux.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Todolist3Mounth/todo_lesson9/src/AppWithRedux/AppWithRedux.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Todolist3Mounth/todo_lesson9/src/AppWithRedux/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Todolist3Mounth/todo_lesson9/src/AppWithRedux/app-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.idea/todo14v3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/AddItemForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/EditableSpan.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/Task.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/Todolist.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/api/todolists-api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/react-app-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/reportWebVitals.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/setupTests.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/state/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/state/tasks-reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/state/todolists-reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/src/tests/unit.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Thunk/todo14v3/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo14v3.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.idea/todo15v3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/api/todolists-api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/app/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/app/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/app/app-reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/app/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/components/AddItemForm/AddItemForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/components/EditableSpan/EditableSpan.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/components/ErrorSnackbar/ErrorSnackbar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/features/TodolistsList/Todolist/Task/Task.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/features/TodolistsList/Todolist/Todolist.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/features/TodolistsList/TodolistsList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/features/TodolistsList/tasks-reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/features/TodolistsList/todolists-reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/react-app-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/reportWebVitals.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/setupTests.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/tests/unit.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/src/utils/error-utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../todo15v3/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,21 +198,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Development/IT-inkubator/Todolist/Todolist4Mounth/Thunk/todo14v3",
+    "last_opened_file_path": "D:/Development/IT-inkubator/Todolist/Todolist4Mounth/lesson14Thunk/todo14v3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs.jest.jest_package": "/Users/denisbindyukov/Desktop/todo14v3/node_modules/react-scripts",
     "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
-      <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
@@ -170,6 +242,7 @@
       <workItem from="1666897080066" duration="27000" />
       <workItem from="1681818788802" duration="1496000" />
       <workItem from="1683213886150" duration="3549000" />
+      <workItem from="1692010743933" duration="199000" />
     </task>
     <servers />
   </component>

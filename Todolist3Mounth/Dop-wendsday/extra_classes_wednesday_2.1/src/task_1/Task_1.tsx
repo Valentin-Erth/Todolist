@@ -9,7 +9,7 @@ type PropsType = { value: string, onChange: (e: ChangeEvent<HTMLInputElement>) =
 // If change value on input Title component not re-render
 // If change value on input Task_1 component not re-render
 
-export const Task_1 = memo(() => {
+export const Task_1 = () => {
     console.log("Task_1 is called")
 
     return (
@@ -18,7 +18,7 @@ export const Task_1 = memo(() => {
             <Title title="I am a title"/>
         </div>
     );
-});
+};
 
 const Title = memo((props: { title: string }) => {
     console.log("Title is called")

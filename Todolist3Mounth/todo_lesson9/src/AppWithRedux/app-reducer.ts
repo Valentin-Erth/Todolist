@@ -8,7 +8,7 @@ export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export const initialState = {
     status: 'idle' as RequestStatusType,
     error: null as null | string,
-    //true когда приложениепроинициализировалиось(проверили пользовател)
+    //true когда приложение проинициализировалиось(проверили пользовател)
     isInitialized: false
 }
 export type InitialStateType = typeof initialState

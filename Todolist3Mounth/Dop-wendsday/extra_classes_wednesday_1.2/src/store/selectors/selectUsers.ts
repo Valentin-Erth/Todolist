@@ -1,5 +1,5 @@
 import {UserType} from 'types';
-import {RootStateOrAny} from "../index";
+import {RootStateOrAny, RootStoreType} from "../index";
 
 
-export const selectUsers = (state: RootStateOrAny): UserType[] => state.userData.users;
+export const selectUsers = (state: RootStoreType): UserType[] => state.usersData.users;

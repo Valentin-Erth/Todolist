@@ -1,7 +1,7 @@
 import {plusUserCount} from 'store/actions';
 
 const initState = {
-  count: '0',
+  count: 0,
 };
 
 type InitStateType = typeof initState;
